@@ -19,11 +19,13 @@ class Homepage extends StatelessWidget {
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: Text(
-            "Homepage",
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            "Chats",
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
       ),
       drawer: MyDrawer(),
       body: _buildUserList(),
