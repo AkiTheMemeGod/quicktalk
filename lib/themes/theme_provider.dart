@@ -3,7 +3,7 @@ import 'package:quicktalk/themes/darkmode.dart';
 import 'package:quicktalk/themes/lightmode.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeData = lightmode;
+  ThemeData _themeData = darkmode;
 
   ThemeData get themeData => _themeData;
 

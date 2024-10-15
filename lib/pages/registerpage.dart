@@ -43,13 +43,12 @@ class Registerpage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.message,
-              size: 80,
-              color: Theme.of(context).colorScheme.primary,
+            Image.asset(
+              "lib/logo/logo.png",
+              scale: 7,
             ),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             Text(
               "We will Set you up right away!",

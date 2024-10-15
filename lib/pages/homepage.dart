@@ -17,10 +17,14 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-          child: Text(
-            "Chats",
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          padding: const EdgeInsets.only(right: 60.0),
+          child: Center(
+            child: Text(
+              "USERS",
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontFamily: "Monospace"),
+            ),
           ),
         ),
         backgroundColor: Colors.transparent,

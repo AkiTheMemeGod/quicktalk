@@ -18,11 +18,19 @@ class Usertile extends StatelessWidget {
             borderRadius: BorderRadius.circular(12)),
         child: Row(
           children: [
-            const Icon(Icons.person),
+            const Icon(
+              Icons.person,
+              size: 30,
+            ),
             const SizedBox(
               width: 25,
             ),
-            Text(text),
+            Flexible(
+                child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontWeight: FontWeight.w400),
+            )),
           ],
         ),
       ),

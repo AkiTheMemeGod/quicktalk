@@ -6,11 +6,14 @@ class MyTxtfeild extends StatelessWidget {
   final String hint;
   final bool obscuretxt;
   final TextEditingController controller;
+  final FocusNode? focusNode;
+
   MyTxtfeild(
       {super.key,
       required this.hint,
       required this.obscuretxt,
-      required this.controller});
+      required this.controller,
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,7 @@ class MyTxtfeild extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(
         obscureText: obscuretxt,
+        focusNode: focusNode,
         controller: controller,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
