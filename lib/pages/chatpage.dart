@@ -7,7 +7,7 @@ import 'package:quicktalk/services/chatservices/chatservices.dart';
 class Chatpage extends StatelessWidget {
   final String recieverEmail;
   final String recieverId;
-
+//comment
   Chatpage({super.key, required this.recieverEmail, required this.recieverId});
 
   final TextEditingController _messagecontroller = TextEditingController();
