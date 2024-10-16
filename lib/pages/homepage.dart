@@ -28,7 +28,7 @@ class Homepage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.grey,
+        foregroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
       ),
       drawer: MyDrawer(),

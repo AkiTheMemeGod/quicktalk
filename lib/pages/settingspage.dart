@@ -20,7 +20,7 @@ class Settingspage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.grey,
+        foregroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
       ),
       body: Column(

@@ -27,7 +27,7 @@ class Usertile extends StatelessWidget {
             ),
             Flexible(
                 child: Text(
-              text,
+              text.length > 10 ? text.substring(0, text.length - 10) : text,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontWeight: FontWeight.w400),
             )),

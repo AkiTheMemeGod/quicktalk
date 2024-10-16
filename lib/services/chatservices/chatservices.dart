@@ -117,6 +117,28 @@ class Chatservices extends ChangeNotifier {
         .delete();
   }
 
+  Future<void> deletemessage(String receiverId, String messageId) async {
+    try {
+      final String currentUserId = _auth.currentUser!.uid;
+
+      // Sort the user IDs to get the chat room ID
+      List<String> ids = [currentUserId, receiverId];
+      ids.sort();
+
+      String chatroom = ids.join("_");
+
+      // Find the message in the Firestore collection using the messageId and delete it
+      await _firestore
+          .collection("chat_rooms")
+          .doc(chatroom)
+          .collection("messages")
+          .doc(messageId)
+          .delete();
+    } catch (e) {
+      print('Error deleting message: $e');
+    }
+  }
+
   Stream<List<Map<String, dynamic>>> getBlockedUsersStream(String userId) {
     return _firestore
         .collection("Users")

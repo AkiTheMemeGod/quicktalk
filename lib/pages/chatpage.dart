@@ -58,7 +58,9 @@ class _ChatpageState extends State<Chatpage> {
   void sendMessage() async {
     if (_messagecontroller.text.isNotEmpty) {
       await _chatservices.sendMessage(
-          widget.recieverId, _messagecontroller.text);
+        widget.recieverId,
+        _messagecontroller.text,
+      );
 
       _messagecontroller.clear();
     }
@@ -77,7 +79,7 @@ class _ChatpageState extends State<Chatpage> {
           style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.grey,
+        foregroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
       ),
       body: Column(
@@ -132,6 +134,7 @@ class _ChatpageState extends State<Chatpage> {
               isCurrentUser: isCurrentUser,
               messageId: doc.id,
               userId: data["senderID"],
+              receiverId: data["recieverId"],
             ),
           ],
         ));
@@ -152,11 +155,11 @@ class _ChatpageState extends State<Chatpage> {
           )),
           Container(
             decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.green),
+                BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
             child: IconButton(
               onPressed: sendMessage,
               icon: const Icon(
-                Icons.arrow_upward,
+                Icons.send,
                 color: Colors.white,
               ),
             ),
