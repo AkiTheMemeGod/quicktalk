@@ -14,8 +14,10 @@ A real-time chat application built using Flutter/Dart and Firebase, designed to 
 * Scalable Architecture: Built for growth, ensuring smooth performance as the user base expands.
 
 ## Screenshots
+![IMG-20241016-WA0021](https://github.com/user-attachments/assets/06ad158f-20fd-4bcc-b8b9-971d75e9b967) ![IMG-20241016-WA0020](https://github.com/user-attachments/assets/2a9d70a2-2f1b-418c-ac24-10fc806b98a6) ![IMG-20241016-WA0019](https://github.com/user-attachments/assets/36b5f009-08fc-4dcd-b883-c50ccadec37b) ![IMG-20241016-WA0018](https://github.com/user-attachments/assets/cd616182-ad4e-4378-b8d7-49ccdebc776c) ![IMG-20241016-WA0017](https://github.com/user-attachments/assets/d1e38c1e-148b-4230-a8a2-4b4545f9935b) ![IMG-20241016-WA0016](https://github.com/user-attachments/assets/34c997cd-41f8-4ce9-be73-bec572fc4e45) ![IMG-20241016-WA0022](https://github.com/user-attachments/assets/db560281-63de-4f62-a363-8593a0501b10)
 
-[Insert screenshots of the app's UI here]
+
+
 
 ## Getting Started
 
