@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyTxtfeild extends StatelessWidget {
   final String hint;
@@ -37,7 +38,9 @@ class MyTxtfeild extends StatelessWidget {
             fillColor: Theme.of(context).colorScheme.secondary,
             filled: true,
             hintText: hint,
-            hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary)),
+            hintStyle: GoogleFonts.breeSerif(
+              color: Theme.of(context).colorScheme.primary,
+            )),
       ),
     );
   }

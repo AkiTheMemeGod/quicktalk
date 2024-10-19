@@ -103,7 +103,7 @@ class _HomepageState extends State<Homepage> {
           .getLastMessage(_authService.getCurrentUser()!.uid, userData['uid'])
           .catchError((_) {
         // Handle error for fetching last message
-        return ["No messages", Timestamp.now()];
+        return ["No messages", Timestamp(0, 0)];
       });
 
       usersWithLastMessages.add({

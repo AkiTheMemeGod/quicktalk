@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/pages/settingspage.dart';
+import 'package:quicktalk/pages/updates.dart';
 
 class MyDrawer extends StatelessWidget {
   void logout() {
@@ -50,6 +51,23 @@ class MyDrawer extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const Settingspage(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: ListTile(
+                  title: Text("UPDATES", style: GoogleFonts.ptSansCaption()),
+                  leading: const Icon(Icons.update),
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdatesPage(),
                       ),
                     );
                   },

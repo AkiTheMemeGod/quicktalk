@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 
 import '../components/my_button.dart';
@@ -16,7 +17,7 @@ class Registerpage extends StatelessWidget {
     if (_confirmpwcontroller.text == _pwcontroller.text) {
       try {
         await authService.signupwithemailandpassword(
-            _emailcontroller.text, _pwcontroller.text);
+            "${_emailcontroller.text}@gmail.com", _pwcontroller.text);
       } catch (e) {
         showDialog(
             context: context,
@@ -52,20 +53,26 @@ class Registerpage extends StatelessWidget {
                   "lib/logo/logo.png",
                   scale: 7,
                 ),
+                Text(
+                  "QuickTalk",
+                  style: GoogleFonts.breeSerif(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 33),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "We will Set you up right away!",
-                  style: TextStyle(
-                      fontFamily: "Monospace",
-                      color: Theme.of(context).colorScheme.primary),
+                  "Get Started",
+                  style: GoogleFonts.breeSerif(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.w100),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 45,
                 ),
                 MyTxtfeild(
-                  hint: "Email",
+                  hint: "Username",
                   obscuretxt: false,
                   controller: _emailcontroller,
                 ),
@@ -100,14 +107,14 @@ class Registerpage extends StatelessWidget {
                   children: [
                     Text(
                       "Already a member?   ",
-                      style: TextStyle(
+                      style: GoogleFonts.breeSerif(
                           color: Theme.of(context).colorScheme.primary),
                     ),
                     GestureDetector(
                       onTap: onTap,
                       child: Text(
                         "Login Now!",
-                        style: TextStyle(
+                        style: GoogleFonts.breeSerif(
                             color: Theme.of(context).colorScheme.primary,
                             fontWeight: FontWeight.bold),
                       ),

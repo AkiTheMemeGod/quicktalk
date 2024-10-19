@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyButton extends StatelessWidget {
   final String name;
@@ -18,7 +19,9 @@ class MyButton extends StatelessWidget {
         padding: EdgeInsets.all(25),
         margin: EdgeInsets.symmetric(horizontal: 25),
         child: Center(
-          child: Text(name),
+          child: Text(name,
+              style: GoogleFonts.breeSerif(
+                  color: Theme.of(context).colorScheme.primary, fontSize: 20)),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/components/usertile.dart';
 import 'package:quicktalk/services/chatservices/chatservices.dart';
@@ -27,7 +28,7 @@ class Blockeduserspage extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("User Unblocked")));
               },
-              child: const Text("Report"))
+              child: const Text("UnBlock"))
         ],
       ),
     );
@@ -43,9 +44,9 @@ class Blockeduserspage extends StatelessWidget {
           child: Center(
             child: Text(
               "BLOCKED USERS",
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontFamily: "Monospace"),
+              style: GoogleFonts.breeSerif(
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
           ),
         ),
@@ -82,7 +83,7 @@ class Blockeduserspage extends StatelessWidget {
               return Usertile(
                 text: users["email"],
                 lastmessage: "Blocked",
-                lasttime: Timestamp.now(),
+                lasttime: Timestamp(0, 0),
                 onTap: () => _showUnblockBox(context, users['uid']),
               );
             },

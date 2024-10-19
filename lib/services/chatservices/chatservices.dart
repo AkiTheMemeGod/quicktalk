@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,18 +25,16 @@ class Chatservices extends ChangeNotifier {
         .collection("Users")
         .doc(currentUser!.uid)
         .collection("BlockedUsers")
-        .orderBy("timestamp", descending: false)
         .snapshots()
-        .asyncMap((snapshot) async {
-      final blockedUserids = snapshot.docs.map((doc) => doc.id).toList();
+        .asyncMap((blockedSnapshot) async {
+      final blockedUserIds = blockedSnapshot.docs.map((doc) => doc.id).toList();
 
-      final usersSnapshots = await _firestore.collection("Users").get();
+      final allUsers = await _firestore.collection("Users").get();
 
-      return usersSnapshots.docs
-          .where((doc) =>
-              doc.data()['email'] != currentUser.email &&
-              !blockedUserids.contains(doc.id))
-          .map((doc) => doc.data())
+      // Exclude blocked users
+      return allUsers.docs
+          .where((userDoc) => !blockedUserIds.contains(userDoc.id))
+          .map((userDoc) => userDoc.data())
           .toList();
     });
   }
