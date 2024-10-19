@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/pages/settingspage.dart';
 
@@ -27,9 +28,9 @@ class MyDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
-                  title: const Text(
+                  title: Text(
                     "HOME",
-                    style: TextStyle(fontFamily: "Monospace"),
+                    style: GoogleFonts.ptSansCaption(),
                   ),
                   leading: const Icon(Icons.home),
                   onTap: () {
@@ -40,8 +41,7 @@ class MyDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
-                  title: const Text("SETTINGS",
-                      style: TextStyle(fontFamily: "Monospace")),
+                  title: Text("SETTINGS", style: GoogleFonts.ptSansCaption()),
                   leading: const Icon(Icons.settings),
                   onTap: () {
                     Navigator.pop(context);
@@ -60,8 +60,7 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0, bottom: 25),
             child: ListTile(
-              title: const Text("LOGOUT",
-                  style: TextStyle(fontFamily: "Monospace")),
+              title: Text("LOGOUT", style: GoogleFonts.ptSansCaption()),
               leading: const Icon(Icons.logout),
               onTap: logout,
             ),

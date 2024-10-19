@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -70,6 +67,15 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyBhRyHw4uFvDtn6r07uvzm_PPOXPqxwsdA',
+    appId: '1:661092054078:web:093a4d8731a574fc3d4d6f',
+    messagingSenderId: '661092054078',
+    projectId: 'quicktalk-f7ed5',
+    authDomain: 'quicktalk-f7ed5.firebaseapp.com',
+    storageBucket: 'quicktalk-f7ed5.appspot.com',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBhRyHw4uFvDtn6r07uvzm_PPOXPqxwsdA',
     appId: '1:661092054078:web:093a4d8731a574fc3d4d6f',
     messagingSenderId: '661092054078',

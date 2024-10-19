@@ -23,6 +23,7 @@ class Chatservices extends ChangeNotifier {
         .collection("Users")
         .doc(currentUser!.uid)
         .collection("BlockedUsers")
+        .orderBy("timestamp", descending: false)
         .snapshots()
         .asyncMap((snapshot) async {
       final blockedUserids = snapshot.docs.map((doc) => doc.id).toList();
@@ -73,6 +74,34 @@ class Chatservices extends ChangeNotifier {
         .collection("messages")
         .orderBy("timestamp", descending: false)
         .snapshots();
+  }
+
+  Future<List> getLastMessage(String userID, String otherUserId) async {
+    List<String> ids = [userID, otherUserId];
+    ids.sort();
+
+    String chatroom = ids.join("_");
+
+    QuerySnapshot<Map<String, dynamic>> snapshot = await _firestore
+        .collection("chat_rooms")
+        .doc(chatroom)
+        .collection("messages")
+        .orderBy("timestamp", descending: true) // Fetch latest first
+        .limit(1) // Limit to the last message
+        .get();
+
+    // Check if there are messages in the snapshot
+    if (snapshot.docs.isNotEmpty) {
+      List data = [
+        snapshot.docs.first.data()['message'],
+        snapshot.docs.first.data()['timestamp']
+      ];
+      //print(snapshot.docs.first.data()['message'].toString());
+      // Access the message data and return the "message" field as a String
+      return data;
+    } else {
+      throw Exception("No messages found in the chat room.");
+    }
   }
 
   //report

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:quicktalk/services/chatservices/chatservices.dart';
 import 'package:quicktalk/themes/theme_provider.dart';
@@ -9,6 +11,7 @@ class MyChatBubble extends StatelessWidget {
   final String messageId;
   final String userId;
   final String receiverId;
+  final Timestamp timestamp;
 
   MyChatBubble(
       {super.key,
@@ -16,7 +19,8 @@ class MyChatBubble extends StatelessWidget {
       required this.isCurrentUser,
       required this.messageId,
       required this.userId,
-      required this.receiverId});
+      required this.receiverId,
+      required this.timestamp});
 
   void _showoption(BuildContext context, String messageId, String userId) {
     showModalBottomSheet(
@@ -125,6 +129,9 @@ class MyChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //String time = timestamp.toDate().toString();
+    DateTime dateTime = timestamp.toDate();
+    String time = DateFormat("hh:mm a").format(dateTime);
     bool isDarkMode =
         Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
     return GestureDetector(
@@ -137,7 +144,7 @@ class MyChatBubble extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.only(top: 15, right: 15, left: 15, bottom: 8),
         margin: EdgeInsets.only(bottom: 6),
         decoration: BoxDecoration(
             color: isCurrentUser
@@ -146,13 +153,23 @@ class MyChatBubble extends StatelessWidget {
                     : const Color.fromARGB(255, 115, 199, 255))
                 : (isDarkMode ? Colors.grey.shade800 : Colors.grey.shade200),
             borderRadius: BorderRadius.circular(12)),
-        child: Text(
-          message,
-          style: TextStyle(
-              fontSize: 14,
-              color: isCurrentUser
-                  ? (isDarkMode ? Colors.white : Colors.black)
-                  : (isDarkMode ? Colors.white : Colors.black)),
+        child: Column(
+          crossAxisAlignment:
+              isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          children: [
+            Text(
+              message,
+              style: TextStyle(
+                  fontSize: 14,
+                  color: isCurrentUser
+                      ? (isDarkMode ? Colors.white : Colors.black)
+                      : (isDarkMode ? Colors.white : Colors.black)),
+            ),
+            Text(
+              time,
+              style: TextStyle(fontSize: 9, fontWeight: FontWeight.w300),
+            ),
+          ],
         ),
       ),
     );

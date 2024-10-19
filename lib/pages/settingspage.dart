@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quicktalk/pages/blockeduserspage.dart';
 import 'package:quicktalk/themes/theme_provider.dart';
@@ -16,7 +17,8 @@ class Settingspage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 80.0),
           child: Text(
             "Settings",
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            style: GoogleFonts.breeSerif(
+                color: Theme.of(context).colorScheme.primary),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -25,6 +27,9 @@ class Settingspage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 34,
+          ),
           Container(
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
@@ -34,7 +39,7 @@ class Settingspage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Dark Mode"),
+                Text("Dark Mode", style: GoogleFonts.averageSans()),
                 CupertinoSwitch(
                   value: Provider.of<ThemeProvider>(context, listen: false)
                       .isDarkMode,
@@ -54,14 +59,14 @@ class Settingspage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Blocked Users"),
+                Text("Blocked Users", style: GoogleFonts.ptSansCaption()),
                 IconButton(
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => Blockeduserspage(),
                         )),
-                    icon: Icon(Icons.person_off))
+                    icon: Icon(Icons.block_rounded))
               ],
             ),
           ),

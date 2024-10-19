@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/components/usertile.dart';
@@ -80,6 +81,8 @@ class Blockeduserspage extends StatelessWidget {
               final users = blockedusers[index];
               return Usertile(
                 text: users["email"],
+                lastmessage: "Blocked",
+                lasttime: Timestamp.now(),
                 onTap: () => _showUnblockBox(context, users['uid']),
               );
             },

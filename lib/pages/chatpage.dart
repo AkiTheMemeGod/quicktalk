@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/components/chat_bubble.dart';
 import 'package:quicktalk/components/my_txtfeild.dart';
@@ -69,14 +70,18 @@ class _ChatpageState extends State<Chatpage> {
 
   @override
   Widget build(BuildContext context) {
+    String name = widget.recieverEmail.length > 10
+        ? widget.recieverEmail.substring(0, widget.recieverEmail.length - 10)
+        : widget.recieverEmail;
+
     return Scaffold(
+      //backgroundColor: Colors.black,
+
       appBar: AppBar(
         title: Text(
-          widget.recieverEmail.length > 10
-              ? widget.recieverEmail
-                  .substring(0, widget.recieverEmail.length - 10)
-              : widget.recieverEmail,
-          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+          name[0].toUpperCase() + name.substring(1),
+          style: GoogleFonts.breeSerif(
+              color: Theme.of(context).colorScheme.inversePrimary),
         ),
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.primary,
@@ -135,6 +140,7 @@ class _ChatpageState extends State<Chatpage> {
               messageId: doc.id,
               userId: data["senderID"],
               receiverId: data["recieverId"],
+              timestamp: data["timestamp"],
             ),
           ],
         ));
