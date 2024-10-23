@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:popover/popover.dart';
 import 'package:provider/provider.dart';
+import 'package:quicktalk/components/popup_menu.dart';
 import 'package:quicktalk/services/chatservices/chatservices.dart';
 import 'package:quicktalk/themes/theme_provider.dart';
 
@@ -22,106 +25,26 @@ class MyChatBubble extends StatelessWidget {
       required this.receiverId,
       required this.timestamp});
 
-  void _showoption(BuildContext context, String messageId, String userId) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return SafeArea(
-            child: Wrap(
-          children: [
-            ListTile(
-              leading: Icon(Icons.flag),
-              title: Text("Report"),
-              onTap: () {
-                Navigator.pop(context);
-                _reportContent(context, userId, messageId);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.block),
-              title: Text("Block User"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
-
-                _blockUser(context, userId);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.cancel),
-              title: Text("Cancel"),
-              onTap: () => Navigator.pop(context),
-            ),
-          ],
-        ));
-      },
-    );
-  }
-
   void _deletemessage(BuildContext context, String recieverId) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Delete Message?"),
-        content: const Text("Are you sure you want to delete this message?"),
+        title: Text("Delete Message?", style: GoogleFonts.breeSerif()),
+        content: Text("Are you sure you want to delete this message?",
+            style: GoogleFonts.breeSerif()),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel")),
+              child: Text("Cancel", style: GoogleFonts.breeSerif())),
           TextButton(
               onPressed: () {
                 Chatservices().deletemessage(recieverId, messageId);
                 Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Message deleted")));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Message deleted",
+                        style: GoogleFonts.breeSerif())));
               },
-              child: const Text("Delete"))
-        ],
-      ),
-    );
-  }
-
-  void _reportContent(BuildContext context, String userId, String messageId) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Report Message?"),
-        content: const Text("Are you sure you want to report this message?"),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel")),
-          TextButton(
-              onPressed: () {
-                Chatservices().reportUser(messageId, userId);
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Message Reported")));
-              },
-              child: const Text("Report"))
-        ],
-      ),
-    );
-  }
-
-  void _blockUser(BuildContext context, String userId) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Block User?"),
-        content: const Text("Are you sure you want to Block This User?"),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel")),
-          TextButton(
-              onPressed: () {
-                Chatservices().blockUser(userId);
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("User Reported")));
-              },
-              child: const Text("Block"))
+              child: Text("Delete", style: GoogleFonts.breeSerif()))
         ],
       ),
     );
@@ -137,12 +60,31 @@ class MyChatBubble extends StatelessWidget {
     return GestureDetector(
       onLongPress: () {
         if (!isCurrentUser) {
+          showPopover(
+            context: context,
+            bodyBuilder: (context) => PopupMenu(
+              context: context,
+              userId: userId,
+              messageId: messageId,
+              receiverId: receiverId,
+              message: message,
+            ),
+            height: 120,
+            width: 150,
+            backgroundColor: Colors.grey.shade100,
+          );
+        } else {
+          _deletemessage(context, receiverId);
+        }
+      },
+      /*onLongPress: () {
+        if (!isCurrentUser) {
           //show options
           _showoption(context, messageId, userId);
         } else {
           _deletemessage(context, receiverId);
         }
-      },
+      }*/
       child: Container(
         padding: EdgeInsets.only(top: 15, right: 15, left: 15, bottom: 8),
         margin: EdgeInsets.only(bottom: 6),

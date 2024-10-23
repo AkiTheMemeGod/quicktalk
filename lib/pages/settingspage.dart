@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quicktalk/pages/blockeduserspage.dart';
+import 'package:quicktalk/pages/profile.dart';
 import 'package:quicktalk/themes/theme_provider.dart';
 
 class Settingspage extends StatelessWidget {
@@ -55,6 +56,26 @@ class Settingspage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(12)),
             margin: EdgeInsets.all(25),
+            padding: EdgeInsets.all(25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Profile Picture", style: GoogleFonts.ptSansCaption()),
+                IconButton(
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Profile(),
+                        )),
+                    icon: Icon(Icons.person))
+              ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.circular(12)),
+            margin: EdgeInsets.symmetric(horizontal: 25),
             padding: EdgeInsets.all(25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

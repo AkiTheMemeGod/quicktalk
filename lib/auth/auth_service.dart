@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -45,6 +46,40 @@ class AuthService {
       return userCredential;
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);
+    }
+  }
+
+  sigupwithGoogle() async {
+    try {
+      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+      if (gUser == null) return; // User canceled the sign-in
+
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken,
+      );
+
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      DocumentSnapshot userDoc = await _firestore
+          .collection("Users")
+          .doc(userCredential.user!.uid)
+          .get();
+
+      if (!userDoc.exists) {
+        await _firestore.collection("Users").doc(userCredential.user!.uid).set({
+          'uid': userCredential.user!.uid,
+          'email': userCredential.user!.email,
+        });
+      }
+
+      return userCredential;
+    } catch (e) {
+      throw Exception("Google Sign-In failed: $e");
     }
   }
 }

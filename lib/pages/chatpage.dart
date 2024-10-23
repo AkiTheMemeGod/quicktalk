@@ -28,6 +28,7 @@ class _ChatpageState extends State<Chatpage> {
   @override
   void initState() {
     super.initState();
+    //setupPushNotifications();
 
     myFocusNode.addListener(() {
       if (myFocusNode.hasFocus) {

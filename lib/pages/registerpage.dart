@@ -47,7 +47,7 @@ class Registerpage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Image.asset(
                   "lib/logo/logo.png",
@@ -69,7 +69,7 @@ class Registerpage extends StatelessWidget {
                       fontWeight: FontWeight.w100),
                 ),
                 const SizedBox(
-                  height: 45,
+                  height: 30,
                 ),
                 MyTxtfeild(
                   hint: "Username",
@@ -93,7 +93,7 @@ class Registerpage extends StatelessWidget {
                   controller: _confirmpwcontroller,
                 ),
                 const SizedBox(
-                  height: 35,
+                  height: 30,
                 ),
                 MyButton(
                   name: "Register",
@@ -115,15 +115,38 @@ class Registerpage extends StatelessWidget {
                       child: Text(
                         "Login Now!",
                         style: GoogleFonts.breeSerif(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold),
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(
-                  height: 50, // Added space to avoid overflow
+                  height: 20,
                 ),
+                Text(
+                  "Or SignIn with Google",
+                  style: GoogleFonts.breeSerif(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: AuthService().sigupwithGoogle,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: BorderRadius.circular(8),
+                      color: Theme.of(context).colorScheme.surface,
+                    ),
+                    padding: EdgeInsets.all(8),
+                    height: 80,
+                    width: 80,
+                    child: Image.asset('lib/logo/google.png'),
+                  ),
+                )
               ],
             ),
           ),

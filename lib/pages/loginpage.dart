@@ -39,7 +39,7 @@ class Loginpage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Image.asset(
                   "lib/logo/logo.png",
@@ -61,7 +61,7 @@ class Loginpage extends StatelessWidget {
                       fontWeight: FontWeight.w100),
                 ),
                 const SizedBox(
-                  height: 120,
+                  height: 80,
                 ),
                 MyTxtfeild(
                   hint: "Username",
@@ -99,11 +99,37 @@ class Loginpage extends StatelessWidget {
                       child: Text(
                         "Register Now!",
                         style: GoogleFonts.breeSerif(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold),
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic),
                       ),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Or SignIn with Google",
+                  style: GoogleFonts.breeSerif(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: AuthService().sigupwithGoogle,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: BorderRadius.circular(8),
+                      color: Theme.of(context).colorScheme.surface,
+                    ),
+                    padding: EdgeInsets.all(8),
+                    height: 80,
+                    width: 80,
+                    child: Image.asset('lib/logo/google.png'),
+                  ),
                 )
               ],
             ),
