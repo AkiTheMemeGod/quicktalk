@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:quicktalk/services/auth/github_services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -30,7 +31,11 @@ class _UpdatesPageState extends State<UpdatesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Updates"),
+        title: Text(
+          "Updates",
+          style: GoogleFonts.breeSerif(
+              color: Theme.of(context).colorScheme.primary),
+        ),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _releases,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:quicktalk/auth/auth_service.dart';
@@ -133,6 +134,7 @@ class _HomepageState extends State<Homepage> {
         lastmessage: lastMessage ?? "No messages",
         lasttime: lastTime,
         onTap: () {
+          HapticFeedback.heavyImpact();
           Navigator.push(
               context,
               MaterialPageRoute(

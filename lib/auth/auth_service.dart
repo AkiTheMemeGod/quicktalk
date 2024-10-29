@@ -53,7 +53,7 @@ class AuthService {
     try {
       final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
 
-      if (gUser == null) return; // User canceled the sign-in
+      if (gUser == null) return;
 
       final GoogleSignInAuthentication gAuth = await gUser.authentication;
 

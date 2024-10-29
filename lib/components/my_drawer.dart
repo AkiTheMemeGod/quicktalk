@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/pages/settingspage.dart';
@@ -35,6 +36,7 @@ class MyDrawer extends StatelessWidget {
                   ),
                   leading: const Icon(Icons.home),
                   onTap: () {
+                    HapticFeedback.heavyImpact();
                     Navigator.pop(context);
                   },
                 ),
@@ -45,6 +47,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("SETTINGS", style: GoogleFonts.ptSansCaption()),
                   leading: const Icon(Icons.settings),
                   onTap: () {
+                    HapticFeedback.heavyImpact();
                     Navigator.pop(context);
 
                     Navigator.push(
@@ -62,6 +65,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("UPDATES", style: GoogleFonts.ptSansCaption()),
                   leading: const Icon(Icons.update),
                   onTap: () {
+                    HapticFeedback.heavyImpact();
                     Navigator.pop(context);
 
                     Navigator.push(
@@ -80,7 +84,10 @@ class MyDrawer extends StatelessWidget {
             child: ListTile(
               title: Text("LOGOUT", style: GoogleFonts.ptSansCaption()),
               leading: const Icon(Icons.logout),
-              onTap: logout,
+              onTap: () {
+                HapticFeedback.heavyImpact();
+                logout();
+              },
             ),
           ),
         ],

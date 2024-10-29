@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 
@@ -111,7 +112,10 @@ class Registerpage extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary),
                     ),
                     GestureDetector(
-                      onTap: onTap,
+                      onTap: () {
+                        HapticFeedback.heavyImpact();
+                        onTap!();
+                      },
                       child: Text(
                         "Login Now!",
                         style: GoogleFonts.breeSerif(
@@ -133,7 +137,10 @@ class Registerpage extends StatelessWidget {
                   height: 10,
                 ),
                 GestureDetector(
-                  onTap: AuthService().sigupwithGoogle,
+                  onTap: () {
+                    HapticFeedback.heavyImpact();
+                    AuthService().sigupwithGoogle();
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(

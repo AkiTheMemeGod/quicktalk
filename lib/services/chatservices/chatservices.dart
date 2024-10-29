@@ -31,7 +31,6 @@ class Chatservices extends ChangeNotifier {
 
       final allUsers = await _firestore.collection("Users").get();
 
-      // Exclude blocked users
       return allUsers.docs
           .where((userDoc) => !blockedUserIds.contains(userDoc.id))
           .map((userDoc) => userDoc.data())

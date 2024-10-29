@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quicktalk/pages/blockeduserspage.dart';
@@ -44,9 +45,11 @@ class Settingspage extends StatelessWidget {
                 CupertinoSwitch(
                   value: Provider.of<ThemeProvider>(context, listen: false)
                       .isDarkMode,
-                  onChanged: (value) =>
-                      Provider.of<ThemeProvider>(context, listen: false)
-                          .toggletheme(),
+                  onChanged: (value) {
+                    HapticFeedback.heavyImpact();
+                    Provider.of<ThemeProvider>(context, listen: false)
+                        .toggletheme();
+                  },
                 )
               ],
             ),
@@ -62,11 +65,14 @@ class Settingspage extends StatelessWidget {
               children: [
                 Text("Profile Picture", style: GoogleFonts.ptSansCaption()),
                 IconButton(
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Profile(),
-                        )),
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Profile(),
+                          ));
+                    },
                     icon: Icon(Icons.person))
               ],
             ),
@@ -82,11 +88,14 @@ class Settingspage extends StatelessWidget {
               children: [
                 Text("Blocked Users", style: GoogleFonts.ptSansCaption()),
                 IconButton(
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Blockeduserspage(),
-                        )),
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Blockeduserspage(),
+                          ));
+                    },
                     icon: Icon(Icons.block_rounded))
               ],
             ),

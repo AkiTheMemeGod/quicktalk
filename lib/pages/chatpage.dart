@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quicktalk/auth/auth_service.dart';
 import 'package:quicktalk/components/chat_bubble.dart';
@@ -28,12 +29,10 @@ class _ChatpageState extends State<Chatpage> {
   @override
   void initState() {
     super.initState();
-    //setupPushNotifications();
 
     myFocusNode.addListener(() {
       if (myFocusNode.hasFocus) {
         Future.delayed(const Duration(microseconds: 100), () => scrolldown());
-        //WidgetsBinding.instance.addPostFrameCallback((_) => scrolldown());
       }
     });
 
@@ -76,8 +75,6 @@ class _ChatpageState extends State<Chatpage> {
         : widget.recieverEmail;
 
     return Scaffold(
-      //backgroundColor: Colors.black,
-
       appBar: AppBar(
         title: Text(
           name[0].toUpperCase() + name.substring(1),
@@ -164,7 +161,10 @@ class _ChatpageState extends State<Chatpage> {
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
             child: IconButton(
-              onPressed: sendMessage,
+              onPressed: () {
+                HapticFeedback.heavyImpact();
+                sendMessage();
+              },
               icon: const Icon(
                 Icons.send,
                 color: Colors.white,
